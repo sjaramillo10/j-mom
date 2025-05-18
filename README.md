@@ -75,3 +75,21 @@ hosting costs, it is not demonstrated in this project.
 You can read more about static layouts here: https://bitspittle.dev/blog/2022/staticdeploy
 
 You can read more about fullstack layouts here: https://bitspittle.dev/blog/2023/clouddeploy
+
+## Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions. When changes are pushed to the main branch, a workflow will:
+
+1. Build the project using `kobweb export --layout static`
+2. Deploy the built site to GitHub Pages
+
+The deployment workflow is defined in `.github/workflows/deploy.yml`. To manually trigger a deployment, you can use the "Actions" tab in the GitHub repository and run the "Deploy to GitHub Pages" workflow.
+
+### Setting up GitHub Pages
+
+To enable GitHub Pages for this repository:
+
+1. Go to your repository settings
+2. Navigate to "Pages" in the sidebar
+3. Under "Build and deployment", select "GitHub Actions" as the source
+4. The site will be available at `https://<username>.github.io/<repository-name>/`
