@@ -19,6 +19,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: # TODO extract this as a repo env variable
+      KOBWEB_CLI_VERSION: 0.9.18
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,17 +34,25 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Kobweb
-        run: |
-          mkdir -p $HOME/.kobweb/bin
-          curl -L -o $HOME/.kobweb/bin/kobweb https://github.com/varabyte/kobweb-cli/releases/latest/download/kobweb
-          chmod +x $HOME/.kobweb/bin/kobweb
-          echo "$HOME/.kobweb/bin" >> $GITHUB_PATH
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Fetch kobweb
+        uses: robinraju/release-downloader@v1.9
+        with:
+          repository: "varabyte/kobweb-cli"
+          tag: "v${{ env.KOBWEB_CLI_VERSION }}"
+          fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
+          tarBall: false
+          zipBall: false
+
+      - name: Unzip kobweb
+        run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
 
       - name: Build with Kobweb
         run: |
           cd site
-          kobweb export --layout static
+          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --layout static
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
