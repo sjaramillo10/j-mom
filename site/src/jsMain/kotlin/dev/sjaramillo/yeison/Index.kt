@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison.pages
+package dev.sjaramillo.yeison.pages
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.StyleVariable
@@ -27,16 +27,16 @@ import com.varabyte.kobweb.silk.style.toAttrs
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.ColorPalettes
+import dev.sjaramillo.yeison.HeadlineTextStyle
+import dev.sjaramillo.yeison.SubheadlineTextStyle
+import dev.sjaramillo.yeison.components.layouts.PageLayoutData
+import dev.sjaramillo.yeison.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vh
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
-import io.github.sjaramillo10.yeison.HeadlineTextStyle
-import io.github.sjaramillo10.yeison.SubheadlineTextStyle
-import io.github.sjaramillo10.yeison.components.layouts.PageLayoutData
-import io.github.sjaramillo10.yeison.toSitePalette
 
 // Container that has a tagline and grid on desktop, and just the tagline on mobile
 val HeroContainerStyle = CssStyle {

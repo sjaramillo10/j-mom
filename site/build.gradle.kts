@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.kobwebx.markdown)
 }
 
-group = "io.github.sjaramillo10.yeison"
+group = "dev.sjaramillo.yeison"
 version = "1.0-SNAPSHOT"
 
 kobweb {

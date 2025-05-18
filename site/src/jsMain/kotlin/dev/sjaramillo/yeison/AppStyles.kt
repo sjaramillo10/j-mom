@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison
+package dev.sjaramillo.yeison
 
 import com.varabyte.kobweb.compose.css.ScrollBehavior
 import com.varabyte.kobweb.compose.css.TextAlign

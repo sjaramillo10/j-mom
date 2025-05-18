@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison.components.sections
+package dev.sjaramillo.yeison.components.sections
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.TextAlign
@@ -16,13 +16,13 @@ import com.varabyte.kobweb.silk.style.base
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import dev.sjaramillo.yeison.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span
-import io.github.sjaramillo10.yeison.toSitePalette
 
 val FooterStyle = CssStyle.base {
-    Modifier
+    Modifier.Companion
         .backgroundColor(colorMode.toSitePalette().nearBackground)
         .padding(topBottom = 1.5.cssRem, leftRight = 10.percent)
 }

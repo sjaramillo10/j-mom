@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison
+package dev.sjaramillo.yeison
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

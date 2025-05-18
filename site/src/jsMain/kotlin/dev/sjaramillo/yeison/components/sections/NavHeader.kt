@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison.components.sections
+package dev.sjaramillo.yeison.components.sections
 
 import androidx.compose.runtime.*
 import com.varabyte.kobweb.browser.dom.ElementTarget
@@ -32,8 +32,8 @@ import com.varabyte.kobweb.silk.style.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.*
-import io.github.sjaramillo10.yeison.components.widgets.IconButton
-import io.github.sjaramillo10.yeison.toSitePalette
+import dev.sjaramillo.yeison.components.widgets.IconButton
+import dev.sjaramillo.yeison.toSitePalette
 
 val NavHeaderStyle = CssStyle.base {
     Modifier.fillMaxWidth().padding(1.cssRem)

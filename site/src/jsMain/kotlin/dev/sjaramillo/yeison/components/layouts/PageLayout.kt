@@ -1,4 +1,4 @@
-package io.github.sjaramillo10.yeison.components.layouts
+package dev.sjaramillo.yeison.components.layouts
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,15 +17,15 @@ import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toAttrs
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import dev.sjaramillo.yeison.components.sections.Footer
+import dev.sjaramillo.yeison.components.sections.NavHeader
+import dev.sjaramillo.yeison.toSitePalette
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.css.vh
-import io.github.sjaramillo10.yeison.components.sections.Footer
-import io.github.sjaramillo10.yeison.components.sections.NavHeader
-import io.github.sjaramillo10.yeison.toSitePalette
 
 val PageContentStyle = CssStyle {
     base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 4.cssRem) }
