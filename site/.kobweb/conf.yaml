@@ -1,0 +1,14 @@
+site:
+  title: "Yeison"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/yeison.js"
+      api: "build/libs/yeison.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/yeison.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
