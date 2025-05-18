@@ -52,7 +52,7 @@ jobs:
       - name: Build with Kobweb
         run: |
           cd site
-          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --layout static
+          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
