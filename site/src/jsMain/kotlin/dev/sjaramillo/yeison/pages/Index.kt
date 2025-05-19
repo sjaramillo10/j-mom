@@ -105,7 +105,7 @@ fun HomePage() {
 
                 Div(SubheadlineTextStyle.toAttrs()) {
                     SpanText("You can read the ")
-                    Link("./about", "About")
+                    Link("/about", "About")
                     SpanText(" page for more information.")
                 }
 
@@ -114,7 +114,7 @@ fun HomePage() {
                     // Change this click handler with your call-to-action behavior
                     // here. Link to an order page? Open a calendar UI? Play a movie?
                     // Up to you!
-                    ctx.router.tryRoutingTo("./about")
+                    ctx.router.tryRoutingTo("/about")
                 }, colorPalette = ColorPalettes.Blue) {
                     Text("This could be your CTA")
                 }
