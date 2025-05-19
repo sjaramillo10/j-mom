@@ -33,6 +33,7 @@ import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import dev.sjaramillo.yeison.components.layouts.PageLayoutData
+import dev.sjaramillo.yeison.utils.validateJson
 import org.jetbrains.compose.web.css.borderRadius
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fontFamily
@@ -113,13 +114,11 @@ fun HomePage() {
                     validationResult = if (jsonInput.isBlank()) {
                         ValidationResult.Error("Please enter JSON data")
                     } else {
-                        try {
-                            // This is just a placeholder for now
-                            // In a future phase, we'll implement actual JSON validation
-                            ValidationResult.Success("JSON is valid")
-                        } catch (e: Exception) {
-                            ValidationResult.Error("Invalid JSON: ${e.message}")
-                        }
+                        // Use validateJson method to validate JSON
+                        validateJson(jsonInput).fold(
+                            onSuccess = { ValidationResult.Success("JSON is valid") },
+                            onFailure = { ValidationResult.Error(it.message ?: "Unknown error") }
+                        )
                     }
                 },
                 modifier = Modifier

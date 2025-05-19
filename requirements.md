@@ -10,3 +10,17 @@ The idea of this project is to use the Kobweb framework to create a JSON pretty 
 
 ### Phase 1: Create the UI
 - [x] Replace the current UI in Index.kt with the layout for our JSON validator
+
+### Phase 2: Add JSON validation
+- [x] Configure the kotlinx.serialization library in the project using the version catalog and add it to the site module.
+  We do not need to configure the kotlinx.serialization plugin, only the library as we won't have classes annotated with @Serializable.
+- [x] Create a validateJson(json: String): Result<Unit> method that uses kotlinx.serialization to validate if a given JSON is valid.
+  We return Unit when the validation succeeds, and an Exception with a custom message otherwise.
+- [x] Add unit tests to confirm that the validateJson() method works as expected
+- [x] Use the validateJson() method to validate if the JSON provided in the text field is valid or not, and show a message accordingly
+
+### Pase 3: Pretty print JSON
+- [ ] In the case that the provided JSON is valid, reformat the provided text so that it is pretty printed with a
+  hardcoded indentation of 2 spaces
+- [ ] Make indentation configuration by providing a selector above the Text input field where the user can select
+  between 2, 4, 6 and 8 spaces of indentation.
