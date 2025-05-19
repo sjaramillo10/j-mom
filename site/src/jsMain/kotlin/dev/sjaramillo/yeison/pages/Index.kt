@@ -1,143 +1,166 @@
 package dev.sjaramillo.yeison.pages
 
 import androidx.compose.runtime.Composable
-import com.varabyte.kobweb.compose.css.StyleVariable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
-import com.varabyte.kobweb.compose.foundation.layout.Row
+import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
+import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
+import com.varabyte.kobweb.compose.ui.modifiers.color
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
+import com.varabyte.kobweb.compose.ui.modifiers.gap
+import com.varabyte.kobweb.compose.ui.modifiers.height
+import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
-import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.forms.Button
-import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
-import com.varabyte.kobweb.silk.style.CssStyle
-import com.varabyte.kobweb.silk.style.base
-import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.style.breakpoint.displayIfAtLeast
-import com.varabyte.kobweb.silk.style.toAttrs
-import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import com.varabyte.kobweb.silk.theme.colors.ColorPalettes
-import dev.sjaramillo.yeison.HeadlineTextStyle
-import dev.sjaramillo.yeison.SubheadlineTextStyle
 import dev.sjaramillo.yeison.components.layouts.PageLayoutData
-import dev.sjaramillo.yeison.toSitePalette
+import org.jetbrains.compose.web.css.borderRadius
 import org.jetbrains.compose.web.css.cssRem
-import org.jetbrains.compose.web.css.fr
+import org.jetbrains.compose.web.css.fontFamily
+import org.jetbrains.compose.web.css.fontSize
+import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.padding
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.vh
+import org.jetbrains.compose.web.css.rgba
+import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Text
-
-// Container that has a tagline and grid on desktop, and just the tagline on mobile
-val HeroContainerStyle = CssStyle {
-    base { Modifier.fillMaxWidth().gap(2.cssRem) }
-    Breakpoint.MD { Modifier.margin { top(20.vh) } }
-}
-
-// A demo grid that appears on the homepage because it looks good
-val HomeGridStyle = CssStyle.base {
-    Modifier
-        .gap(0.5.cssRem)
-        .width(70.cssRem)
-        .height(18.cssRem)
-}
-
-private val GridCellColorVar by StyleVariable<Color>()
-val HomeGridCellStyle = CssStyle.base {
-    Modifier
-        .backgroundColor(GridCellColorVar.value())
-        .boxShadow(blurRadius = 0.6.cssRem, color = GridCellColorVar.value())
-        .borderRadius(1.cssRem)
-}
-
-@Composable
-private fun GridCell(color: Color, row: Int, column: Int, width: Int? = null, height: Int? = null) {
-    Div(
-        HomeGridCellStyle.toModifier()
-            .setVariable(GridCellColorVar, color)
-            .gridItem(row, column, width, height)
-            .toAttrs()
-    )
-}
-
+import org.jetbrains.compose.web.dom.TextArea
 
 @InitRoute
 fun initHomePage(ctx: InitRouteContext) {
-    ctx.data.add(PageLayoutData("Home"))
+    ctx.data.add(PageLayoutData("JSON Validator"))
 }
 
 @Page
 @Layout(".components.layouts.PageLayout")
 @Composable
 fun HomePage() {
-    Row(HeroContainerStyle.toModifier()) {
-        Box {
-            val sitePalette = ColorMode.current.toSitePalette()
+    var jsonInput by remember { mutableStateOf("") }
+    var validationResult by remember { mutableStateOf<ValidationResult?>(null) }
 
-            Column(Modifier.gap(2.cssRem)) {
-                Div(HeadlineTextStyle.toAttrs()) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(2.cssRem),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(90.percent)
+                .maxWidth(800.px)
+                .gap(1.cssRem),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // Title
+            H1(
+                attrs = Modifier
+                    .fontWeight(FontWeight.Bold)
+                    .fontSize(2.cssRem)
+                    .margin(bottom = 1.cssRem)
+                    .color(
+                        when (ColorMode.current) {
+                            ColorMode.LIGHT -> Colors.Black
+                            ColorMode.DARK -> Colors.White
+                        }
+                    )
+                    .toAttrs()
+            ) {
+                Text("JSON Validator")
+            }
+
+            // JSON Input TextArea
+            TextArea(
+                attrs = {
+                    style {
+                        width(100.percent)
+                        height(300.px)
+                        padding(1.cssRem)
+                        fontSize(1.cssRem)
+                        fontFamily("monospace")
+                        borderRadius(0.5.cssRem)
+                        property("resize", "vertical")
+                    }
+                    attr("placeholder", "Paste your JSON here...")
+                    onInput { jsonInput = it.value }
+                }
+            )
+
+            // Validate Button
+            Button(
+                onClick = {
+                    validationResult = if (jsonInput.isBlank()) {
+                        ValidationResult.Error("Please enter JSON data")
+                    } else {
+                        try {
+                            // This is just a placeholder for now
+                            // In a future phase, we'll implement actual JSON validation
+                            ValidationResult.Success("JSON is valid")
+                        } catch (e: Exception) {
+                            ValidationResult.Error("Invalid JSON: ${e.message}")
+                        }
+                    }
+                },
+                modifier = Modifier
+                    .width(150.px)
+                    .height(40.px)
+                    .margin(topBottom = 1.cssRem)
+            ) {
+                SpanText("Validate")
+            }
+
+            // Validation Result
+            validationResult?.let { result ->
+                Div(
+                    attrs = Modifier
+                        .fillMaxWidth()
+                        .padding(1.cssRem)
+                        .backgroundColor(
+                            when (result) {
+                                is ValidationResult.Success -> rgba(0, 128, 0, 0.1)
+                                is ValidationResult.Error -> rgba(255, 0, 0, 0.1)
+                            }
+                        )
+                        .borderRadius(0.5.cssRem)
+                        .toAttrs()
+                ) {
                     SpanText(
-                        "Use this template as your starting point for ", Modifier.color(
-                            when (ColorMode.current) {
-                                ColorMode.LIGHT -> Colors.Black
-                                ColorMode.DARK -> Colors.White
+                        text = result.message,
+                        modifier = Modifier.color(
+                            when (result) {
+                                is ValidationResult.Success -> Colors.Green
+                                is ValidationResult.Error -> Colors.Red
                             }
                         )
                     )
-                    SpanText(
-                        "Kobweb",
-                        Modifier
-                            .color(sitePalette.brand.accent)
-                            // Use a shadow so this light-colored word is more visible in light mode
-                            .textShadow(0.px, 0.px, blurRadius = 0.5.cssRem, color = Colors.Gray)
-                    )
-                }
-
-                Div(SubheadlineTextStyle.toAttrs()) {
-                    SpanText("You can read the ")
-                    Link("/about", "About")
-                    SpanText(" page for more information.")
-                }
-
-                val ctx = rememberPageContext()
-                Button(onClick = {
-                    // Change this click handler with your call-to-action behavior
-                    // here. Link to an order page? Open a calendar UI? Play a movie?
-                    // Up to you!
-                    ctx.router.tryRoutingTo("/about")
-                }, colorPalette = ColorPalettes.Blue) {
-                    Text("This could be your CTA")
                 }
             }
-        }
-
-        Div(
-            HomeGridStyle
-            .toModifier()
-            .displayIfAtLeast(Breakpoint.MD)
-            .grid {
-                rows { repeat(3) { size(1.fr) } }
-                columns { repeat(5) { size(1.fr) } }
-            }
-            .toAttrs()
-        ) {
-            val sitePalette = ColorMode.current.toSitePalette()
-            GridCell(sitePalette.brand.primary, 1, 1, 2, 2)
-            GridCell(ColorPalettes.Monochrome._600, 1, 3)
-            GridCell(ColorPalettes.Monochrome._100, 1, 4, width = 2)
-            GridCell(sitePalette.brand.accent, 2, 3, width = 2)
-            GridCell(ColorPalettes.Monochrome._300, 2, 5)
-            GridCell(ColorPalettes.Monochrome._800, 3, 1, width = 5)
         }
     }
+}
+
+sealed class ValidationResult(val message: String) {
+    class Success(message: String) : ValidationResult(message)
+    class Error(message: String) : ValidationResult(message)
 }
