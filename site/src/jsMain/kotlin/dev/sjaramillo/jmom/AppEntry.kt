@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison
+package dev.sjaramillo.jmom
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,7 +19,7 @@ import com.varabyte.kobweb.silk.theme.colors.loadFromLocalStorage
 import com.varabyte.kobweb.silk.theme.colors.saveToLocalStorage
 import com.varabyte.kobweb.silk.theme.colors.systemPreference
 
-private const val COLOR_MODE_KEY = "yeison:colorMode"
+private const val COLOR_MODE_KEY = "jmom:colorMode"
 
 @InitSilk
 fun initColorMode(ctx: InitSilkContext) {

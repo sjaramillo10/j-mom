@@ -1,15 +1,15 @@
 site:
-  title: "Yeison"
-  basePath: "Yeison"
+  title: "J-mom"
+  basePath: "j-mom"
 
 server:
   files:
     dev:
       contentRoot: "build/processedResources/js/main/public"
-      script: "build/kotlin-webpack/js/developmentExecutable/yeison.js"
-      api: "build/libs/yeison.jar"
+      script: "build/kotlin-webpack/js/developmentExecutable/j-mom.js"
+      api: "build/libs/j-mom.jar"
     prod:
-      script: "build/kotlin-webpack/js/productionExecutable/yeison.js"
+      script: "build/kotlin-webpack/js/productionExecutable/j-mom.js"
       siteRoot: ".kobweb/site"
 
   port: 8080

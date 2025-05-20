@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.utils
+package dev.sjaramillo.jmom.utils
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.SerializationException

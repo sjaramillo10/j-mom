@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.kobwebx.markdown)
 }
 
-group = "dev.sjaramillo.yeison"
+group = "dev.sjaramillo.jmom"
 version = "1.0-SNAPSHOT"
 
 kobweb {
@@ -21,7 +21,7 @@ kobweb {
 kotlin {
     // This example is frontend only. However, for a fullstack app, you can uncomment the includeServer parameter
     // and the `jvmMain` source set below.
-    configAsKobwebApplication("yeison" /*, includeServer = true*/)
+    configAsKobwebApplication("j-mom" /*, includeServer = true*/)
 
     sourceSets {
         jsMain.dependencies {

@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.components.layouts
+package dev.sjaramillo.jmom.components.layouts
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.FontWeight
@@ -15,7 +15,7 @@ import com.varabyte.kobweb.silk.style.toAttrs
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
-import dev.sjaramillo.yeison.toSitePalette
+import dev.sjaramillo.jmom.toSitePalette
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem

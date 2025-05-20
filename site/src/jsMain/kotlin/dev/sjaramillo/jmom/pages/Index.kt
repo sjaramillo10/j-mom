@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.pages
+package dev.sjaramillo.jmom.pages
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,8 +32,8 @@ import com.varabyte.kobweb.core.layout.Layout
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import dev.sjaramillo.yeison.components.layouts.PageLayoutData
-import dev.sjaramillo.yeison.utils.validateJson
+import dev.sjaramillo.jmom.components.layouts.PageLayoutData
+import dev.sjaramillo.jmom.utils.validateJson
 import org.jetbrains.compose.web.css.borderRadius
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fontFamily

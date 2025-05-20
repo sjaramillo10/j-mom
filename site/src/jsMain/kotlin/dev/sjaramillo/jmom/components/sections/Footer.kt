@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.components.sections
+package dev.sjaramillo.jmom.components.sections
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.TextAlign
@@ -16,7 +16,7 @@ import com.varabyte.kobweb.silk.style.base
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import dev.sjaramillo.yeison.toSitePalette
+import dev.sjaramillo.jmom.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span

@@ -1,12 +1,12 @@
-package dev.sjaramillo.yeison.components.widgets
+package dev.sjaramillo.jmom.components.widgets
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.setVariable
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.forms.ButtonVars
-import dev.sjaramillo.yeison.CircleButtonVariant
-import dev.sjaramillo.yeison.UncoloredButtonVariant
+import dev.sjaramillo.jmom.CircleButtonVariant
+import dev.sjaramillo.jmom.UncoloredButtonVariant
 import org.jetbrains.compose.web.css.em
 
 @Composable

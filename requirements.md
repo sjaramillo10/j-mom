@@ -1,4 +1,4 @@
-# Yeison project requirements
+# J-mom project requirements
 
 The idea of this project is to use the Kobweb framework to create a JSON pretty print utility with these features:
 - Has a big Text widget at the center where users can paste or type their JSON data

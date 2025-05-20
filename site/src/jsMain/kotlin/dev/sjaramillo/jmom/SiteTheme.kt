@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison
+package dev.sjaramillo.jmom
 
 import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Colors

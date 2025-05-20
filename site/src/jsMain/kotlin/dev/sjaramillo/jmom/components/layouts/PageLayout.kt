@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.components.layouts
+package dev.sjaramillo.jmom.components.layouts
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,9 +17,9 @@ import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toAttrs
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import dev.sjaramillo.yeison.components.sections.Footer
-import dev.sjaramillo.yeison.components.sections.NavHeader
-import dev.sjaramillo.yeison.toSitePalette
+import dev.sjaramillo.jmom.components.sections.Footer
+import dev.sjaramillo.jmom.components.sections.NavHeader
+import dev.sjaramillo.jmom.toSitePalette
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
@@ -73,7 +73,7 @@ class PageLayoutData(val title: String)
 fun PageLayout(ctx: PageContext, content: @Composable ColumnScope.() -> Unit) {
     val data = ctx.data.getValue<PageLayoutData>()
     LaunchedEffect(data.title) {
-        document.title = "Yeison - ${data.title}"
+        document.title = "J-mom - ${data.title}"
     }
 
     Box(

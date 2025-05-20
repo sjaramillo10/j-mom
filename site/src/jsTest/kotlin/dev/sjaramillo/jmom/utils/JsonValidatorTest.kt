@@ -1,4 +1,4 @@
-package dev.sjaramillo.yeison.utils
+package dev.sjaramillo.jmom.utils
 
 import kotlin.test.Test
 import kotlin.test.assertTrue
