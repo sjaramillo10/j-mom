@@ -23,6 +23,23 @@ kotlin {
     // and the `jvmMain` source set below.
     configAsKobwebApplication("j-mom" /*, includeServer = true*/)
 
+    js(IR) {
+        browser {
+            testTask {
+                useKarma {
+                    // Use Chrome by default for browser tests
+                    useChrome()
+                }
+            }
+        }
+        nodejs {
+            // Configure NodeJS for running tests
+            testTask {
+                useMocha()
+            }
+        }
+    }
+
     sourceSets {
         jsMain.dependencies {
             implementation(libs.compose.runtime)
