@@ -19,6 +19,10 @@ The idea of this project is to use the Kobweb framework to create a JSON pretty 
 - [x] Add unit tests to confirm that the validateJson() method works as expected
 - [x] Use the validateJson() method to validate if the JSON provided in the text field is valid or not, and show a message accordingly
 
+#### Phase 2.1: JSON validation edge case
+- [x] Handle an edge case when there is a single word. This is currently shown as valid but it should not. Add a test to 
+  JsonValidatorTest to ensure we don't break this functionality.
+
 ### Phase 3: Pretty print JSON
 - [ ] In the case that the provided JSON is valid, reformat the provided text so that it is pretty printed with a
   hardcoded indentation of 2 spaces
