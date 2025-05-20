@@ -51,7 +51,7 @@ import org.jetbrains.compose.web.dom.TextArea
 
 @InitRoute
 fun initHomePage(ctx: InitRouteContext) {
-    ctx.data.add(PageLayoutData("JSON Validator"))
+    ctx.data.add(PageLayoutData("J-son Validator"))
 }
 
 @Page
@@ -88,7 +88,7 @@ fun HomePage() {
                     )
                     .toAttrs()
             ) {
-                Text("JSON Validator")
+                Text("J-son Validator")
             }
 
             // JSON Input TextArea
@@ -112,12 +112,12 @@ fun HomePage() {
             Button(
                 onClick = {
                     validationResult = if (jsonInput.isBlank()) {
-                        ValidationResult.Error("Please enter JSON data")
+                        ValidationResult.Error("Where is my J-son? 🥹")
                     } else {
                         // Use validateJson method to validate JSON
                         validateJson(jsonInput).fold(
-                            onSuccess = { ValidationResult.Success("JSON is valid") },
-                            onFailure = { ValidationResult.Error(it.message ?: "Unknown error") }
+                            onSuccess = { ValidationResult.Success("Good J-son! 🥰") },
+                            onFailure = { ValidationResult.Error("Bad J-son! 😤\n" + (it.message ?: "Unknown error")) }
                         )
                     }
                 },
