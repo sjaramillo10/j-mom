@@ -45,4 +45,4 @@ The project is being implemented in phases. The progress can be found in the [re
 ## Implementation Notes
 - When implementing new features, ensure they work in both light and dark color modes
 - The UI should be responsive and work well on different screen sizes
-- Error messages should be clear and helpful to the user
+- Error messages should be clear, fun and helpful to the user

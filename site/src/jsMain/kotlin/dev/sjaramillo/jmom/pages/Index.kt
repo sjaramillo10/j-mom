@@ -33,6 +33,7 @@ import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import dev.sjaramillo.jmom.components.layouts.PageLayoutData
+import dev.sjaramillo.jmom.utils.prettyPrintJson
 import dev.sjaramillo.jmom.utils.validateJson
 import org.jetbrains.compose.web.css.borderRadius
 import org.jetbrains.compose.web.css.cssRem
@@ -93,6 +94,7 @@ fun HomePage() {
 
             // JSON Input TextArea
             TextArea(
+                value = jsonInput,
                 attrs = {
                     style {
                         width(100.percent)
@@ -116,7 +118,17 @@ fun HomePage() {
                     } else {
                         // Use validateJson method to validate JSON
                         validateJson(jsonInput).fold(
-                            onSuccess = { ValidationResult.Success("Good J-son! 🥰") },
+                            onSuccess = { 
+                                // If JSON is valid, pretty print it
+                                prettyPrintJson(jsonInput).fold(
+                                    onSuccess = { prettyJson ->
+                                        // Update the text area with pretty-printed JSON
+                                        jsonInput = prettyJson
+                                        ValidationResult.Success("Good J-son! 🥰")
+                                    },
+                                    onFailure = { ValidationResult.Error("Error formatting JSON: " + (it.message ?: "Unknown error")) }
+                                )
+                            },
                             onFailure = { ValidationResult.Error("Bad J-son! 😤\n" + (it.message ?: "Unknown error")) }
                         )
                     }

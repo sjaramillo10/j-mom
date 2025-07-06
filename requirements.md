@@ -24,9 +24,9 @@ The idea of this project is to use the Kobweb framework to create a JSON pretty 
   JsonValidatorTest to ensure we don't break this functionality.
 
 ### Phase 3: Pretty print JSON
-- [ ] In the case that the provided JSON is valid, reformat the provided text so that it is pretty printed with a
+- [x] In the case that the provided JSON is valid, reformat the provided text so that it is pretty printed with a
   hardcoded indentation of 2 spaces
-- [ ] Add a JsonPrettyPrintTest file that validates different valid and invalid JSON scenarios and confirms that pretty
+- [x] Add a JsonPrettyPrintTest file that validates different valid and invalid JSON scenarios and confirms that pretty
   is only called when the JSON is valid.
 
 #### Phase 3.1: Make pretty print configurable
