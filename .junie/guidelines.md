@@ -18,12 +18,7 @@ J-mom is a JSON pretty print utility built with the Kobweb framework (a Kotlin w
     - `/kotlin/dev/sjaramillo/jmom/utils/` - Tests for utility functions
 
 ## Implementation Status
-The project is being implemented in phases:
-1. ✅ Phase 1: Create the UI with a text widget and validation button
-2. ✅ Phase 2: Add JSON validation using kotlinx.serialization
-3. ✅ Phase 2.1: Handle edge cases in JSON validation
-4. ❌ Phase 3: Implement pretty printing with configurable indentation
-5. ❌ Phase 4: Add editor improvements (syntax highlighting, line numbers, collapsible sections)
+The project is being implemented in phases. The progress can be found in the [requirements.md](../requirements.md) file.
 
 ## Testing Guidelines
 - When implementing new features or fixing bugs, always run the relevant tests to ensure functionality works as expected

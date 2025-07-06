@@ -95,7 +95,7 @@ class JsonValidatorTest {
 
     @Test
     fun testSingleWordEdgeCase() {
-        // Test single word (without quotes) which should be invalid
+        // Test a single word (without quotes) which should be invalid
         val singleWordResult = validateJson("hello")
         assertFalse(singleWordResult.isSuccess, "Single word without quotes should fail validation")
 

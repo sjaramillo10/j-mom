@@ -26,12 +26,16 @@ The idea of this project is to use the Kobweb framework to create a JSON pretty 
 ### Phase 3: Pretty print JSON
 - [ ] In the case that the provided JSON is valid, reformat the provided text so that it is pretty printed with a
   hardcoded indentation of 2 spaces
-- [ ] Make indentation configuration by providing a selector above the Text input field where the user can select
+- [ ] Add a JsonPrettyPrintTest file that validates different valid and invalid JSON scenarios and confirms that pretty
+  is only called when the JSON is valid.
+
+#### Phase 3.1: Make pretty print configurable
+- [ ] Make indentation configurable by providing a selector above the Text input field where the user can select
   between 2, 4, 6 and 8 spaces of indentation.
 
 ### Phase 4: JSON editor improvements
 - [ ] Add syntax highlighting to the JSON text field when the JSON has been validated. Turn off syntax highlighting as soon
   as the text is updated.
-- [ ] Add line numbers for easier JSON reading, use a grayed out text for this to avoid confusing it with the JSON contents.
+- [ ] Add line numbers for easier JSON reading, use a grayed-out text for this to avoid confusing it with the JSON contents.
 - [ ] Add functionality to collapse and expand JSON sections. We need gutter icons that will allow us to perform the
   collapse/expand action.
