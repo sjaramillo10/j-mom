@@ -51,6 +51,8 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextArea
+import org.jetbrains.compose.web.dom.Select
+import org.jetbrains.compose.web.dom.Option
 
 @InitRoute
 fun initHomePage(ctx: InitRouteContext) {
@@ -109,32 +111,33 @@ fun HomePage() {
                         .fontWeight(FontWeight.Bold)
                 )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .gap(0.5.cssRem),
-                    horizontalArrangement = Arrangement.Start
+                // Spinner (dropdown) for indentation selection (replaces the previous button-based implementation)
+                Select(
+                    attrs = {
+                        style {
+                            padding(0.5.cssRem)
+                            fontSize(1.cssRem)
+                            borderRadius(0.5.cssRem)
+                            width(150.px)
+                        }
+                        onInput { event ->
+                            // Parse the selected value to Int and update the state
+                            val spaces = event.value?.toIntOrNull() ?: 2
+                            selectedIndentation = spaces
+                        }
+                    }
                 ) {
+                    // Add options for 2, 4, 6, and 8 spaces
                     listOf(2, 4, 6, 8).forEach { spaces ->
-                        Button(
-                            onClick = { selectedIndentation = spaces },
-                            modifier = Modifier
-                                .margin(right = 0.5.cssRem)
-                                .backgroundColor(
-                                    if (selectedIndentation == spaces) {
-                                        when (ColorMode.current) {
-                                            ColorMode.LIGHT -> Colors.LightBlue
-                                            ColorMode.DARK -> Colors.DarkBlue
-                                        }
-                                    } else {
-                                        when (ColorMode.current) {
-                                            ColorMode.LIGHT -> Colors.LightGray
-                                            ColorMode.DARK -> Colors.DarkGray
-                                        }
-                                    }
-                                )
+                        Option(
+                            value = spaces.toString(),
+                            attrs = {
+                                if (selectedIndentation == spaces) {
+                                    attr("selected", "true")
+                                }
+                            }
                         ) {
-                            SpanText("$spaces spaces")
+                            Text("$spaces spaces")
                         }
                     }
                 }
