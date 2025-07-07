@@ -30,8 +30,9 @@ The idea of this project is to use the Kobweb framework to create a JSON pretty 
   is only called when the JSON is valid.
 
 #### Phase 3.1: Make pretty print configurable
-- [ ] Make indentation configurable by providing a selector above the Text input field where the user can select
+- [x] Make indentation configurable by providing a selector above the Text input field where the user can select
   between 2, 4, 6 and 8 spaces of indentation.
+- [x] Add a test to confirm that the customized indentation works.
 
 ### Phase 4: JSON editor improvements
 - [ ] Add syntax highlighting to the JSON text field when the JSON has been validated. Turn off syntax highlighting as soon

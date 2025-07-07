@@ -102,4 +102,44 @@ class JsonPrettyPrintTest {
         assertTrue(nullResult.isSuccess, "Pretty printing valid JSON null should succeed")
         assertEquals("null", nullResult.getOrNull()?.trim(), "Pretty printed JSON null should be preserved")
     }
+
+    @Test
+    fun testConfigurableIndentation() {
+        // Test JSON object with different indentation values
+        val jsonObject = """{"name":"John","age":30,"address":{"street":"123 Main St","city":"Anytown"}}"""
+
+        // Test with 2 spaces (default)
+        val result2Spaces = prettyPrintJson(jsonObject, 2)
+        assertTrue(result2Spaces.isSuccess, "Pretty printing with 2 spaces should succeed")
+        val prettyJson2Spaces = result2Spaces.getOrNull() ?: ""
+
+        // Test with 4 spaces
+        val result4Spaces = prettyPrintJson(jsonObject, 4)
+        assertTrue(result4Spaces.isSuccess, "Pretty printing with 4 spaces should succeed")
+        val prettyJson4Spaces = result4Spaces.getOrNull() ?: ""
+
+        // Test with 6 spaces
+        val result6Spaces = prettyPrintJson(jsonObject, 6)
+        assertTrue(result6Spaces.isSuccess, "Pretty printing with 6 spaces should succeed")
+        val prettyJson6Spaces = result6Spaces.getOrNull() ?: ""
+
+        // Test with 8 spaces
+        val result8Spaces = prettyPrintJson(jsonObject, 8)
+        assertTrue(result8Spaces.isSuccess, "Pretty printing with 8 spaces should succeed")
+        val prettyJson8Spaces = result8Spaces.getOrNull() ?: ""
+
+        // Verify that the indentation is different for each configuration
+        assertTrue(prettyJson2Spaces != prettyJson4Spaces, "2-space indentation should be different from 4-space indentation")
+        assertTrue(prettyJson4Spaces != prettyJson6Spaces, "4-space indentation should be different from 6-space indentation")
+        assertTrue(prettyJson6Spaces != prettyJson8Spaces, "6-space indentation should be different from 8-space indentation")
+
+        // Verify that the content is preserved in all configurations
+        listOf(prettyJson2Spaces, prettyJson4Spaces, prettyJson6Spaces, prettyJson8Spaces).forEach { json ->
+            assertTrue(json.contains("\"name\""), "JSON should preserve field names")
+            assertTrue(json.contains("\"John\""), "JSON should preserve string values")
+            assertTrue(json.contains("\"address\""), "JSON should preserve nested fields")
+            assertTrue(json.contains("\"street\""), "JSON should preserve nested field names")
+            assertTrue(json.contains("\"123 Main St\""), "JSON should preserve nested field values")
+        }
+    }
 }

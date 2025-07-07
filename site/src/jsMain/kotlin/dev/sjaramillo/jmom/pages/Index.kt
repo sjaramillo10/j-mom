@@ -5,6 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -61,6 +63,7 @@ fun initHomePage(ctx: InitRouteContext) {
 fun HomePage() {
     var jsonInput by remember { mutableStateOf("") }
     var validationResult by remember { mutableStateOf<ValidationResult?>(null) }
+    var selectedIndentation by remember { mutableStateOf(2) } // Default to 2 spaces
 
     Box(
         modifier = Modifier
@@ -92,6 +95,51 @@ fun HomePage() {
                 Text("J-son Validator")
             }
 
+            // Indentation Selector
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .margin(bottom = 0.5.cssRem),
+                horizontalAlignment = Alignment.Start
+            ) {
+                SpanText(
+                    text = "Indentation:",
+                    modifier = Modifier
+                        .margin(bottom = 0.5.cssRem)
+                        .fontWeight(FontWeight.Bold)
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .gap(0.5.cssRem),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    listOf(2, 4, 6, 8).forEach { spaces ->
+                        Button(
+                            onClick = { selectedIndentation = spaces },
+                            modifier = Modifier
+                                .margin(right = 0.5.cssRem)
+                                .backgroundColor(
+                                    if (selectedIndentation == spaces) {
+                                        when (ColorMode.current) {
+                                            ColorMode.LIGHT -> Colors.LightBlue
+                                            ColorMode.DARK -> Colors.DarkBlue
+                                        }
+                                    } else {
+                                        when (ColorMode.current) {
+                                            ColorMode.LIGHT -> Colors.LightGray
+                                            ColorMode.DARK -> Colors.DarkGray
+                                        }
+                                    }
+                                )
+                        ) {
+                            SpanText("$spaces spaces")
+                        }
+                    }
+                }
+            }
+
             // JSON Input TextArea
             TextArea(
                 value = jsonInput,
@@ -119,8 +167,8 @@ fun HomePage() {
                         // Use validateJson method to validate JSON
                         validateJson(jsonInput).fold(
                             onSuccess = { 
-                                // If JSON is valid, pretty print it
-                                prettyPrintJson(jsonInput).fold(
+                                // If JSON is valid, pretty print it with selected indentation
+                                prettyPrintJson(jsonInput, selectedIndentation).fold(
                                     onSuccess = { prettyJson ->
                                         // Update the text area with pretty-printed JSON
                                         jsonInput = prettyJson
