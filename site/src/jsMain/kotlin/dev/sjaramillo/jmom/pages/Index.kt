@@ -42,6 +42,7 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fontFamily
 import org.jetbrains.compose.web.css.fontSize
 import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.minWidth
 import org.jetbrains.compose.web.css.padding
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -104,40 +105,46 @@ fun HomePage() {
                     .margin(bottom = 0.5.cssRem),
                 horizontalAlignment = Alignment.Start
             ) {
-                SpanText(
-                    text = "Indentation:",
-                    modifier = Modifier
-                        .margin(bottom = 0.5.cssRem)
-                        .fontWeight(FontWeight.Bold)
-                )
-
-                // Spinner (dropdown) for indentation selection (replaces the previous button-based implementation)
-                Select(
-                    attrs = {
-                        style {
-                            padding(0.5.cssRem)
-                            fontSize(1.cssRem)
-                            borderRadius(0.5.cssRem)
-                            width(150.px)
-                        }
-                        onInput { event ->
-                            // Parse the selected value to Int and update the state
-                            val spaces = event.value?.toIntOrNull() ?: 2
-                            selectedIndentation = spaces
-                        }
-                    }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Add options for 2, 4, 6, and 8 spaces
-                    listOf(2, 4, 6, 8).forEach { spaces ->
-                        Option(
-                            value = spaces.toString(),
-                            attrs = {
-                                if (selectedIndentation == spaces) {
-                                    attr("selected", "true")
-                                }
+                    SpanText(
+                        text = "Indentation:",
+                        modifier = Modifier
+                            .margin(right = 0.5.cssRem)
+                            .fontWeight(FontWeight.Bold)
+                    )
+
+                    // Spinner (dropdown) for indentation selection
+                    Select(
+                        attrs = {
+                            style {
+                                padding(0.5.cssRem)
+                                fontSize(1.cssRem)
+                                borderRadius(0.5.cssRem)
+                                minWidth(150.px)
                             }
-                        ) {
-                            Text("$spaces spaces")
+                            onInput { event ->
+                                // Parse the selected value to Int and update the state
+                                val spaces = event.value?.toIntOrNull() ?: 2
+                                selectedIndentation = spaces
+                            }
+                        }
+                    ) {
+                        // Add options for 2, 4, 6, and 8 spaces
+                        listOf(2, 4, 6, 8).forEach { spaces ->
+                            Option(
+                                value = spaces.toString(),
+                                attrs = {
+                                    if (selectedIndentation == spaces) {
+                                        attr("selected", "true")
+                                    }
+                                }
+                            ) {
+                                Text("$spaces spaces")
+                            }
                         }
                     }
                 }
